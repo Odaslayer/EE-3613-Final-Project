@@ -150,7 +150,7 @@ module IFID(flush,clock,IFIDWrite,PC_Plus4,Inst,InstReg,PC_Plus4Reg);
 	end
 	endmodule
 
- // ID/EX:
+///  ID/EX:
 module IDEX(clock,WB,M,EX,DataA,DataB,imm_value,RegRs,RegRt,RegRd,WBreg,Mreg,EXreg,DataAreg,
 	DataBreg,imm_valuereg,RegRsreg,RegRtreg,RegRdreg);
 	input clock;
@@ -197,7 +197,7 @@ module IDEX(clock,WB,M,EX,DataA,DataB,imm_value,RegRs,RegRt,RegRd,WBreg,Mreg,EXr
 
 endmodule
 
-///EX/MEM:
+///  EX/MEM:
 module EXMEM(clock,WB,M,ALUOut,RegRD,WriteDataIn,Mreg,WBreg,ALUreg,RegRDreg,WriteDataOut);
 	input clock;
 	input [1:0] WB;
@@ -231,7 +231,7 @@ module EXMEM(clock,WB,M,ALUOut,RegRD,WriteDataIn,Mreg,WBreg,ALUreg,RegRDreg,Writ
 	end
 endmodule
 
-	 // MEM/WB:
+///  MEM/WB:
 module MEMWB(clock,WB,Memout,ALUOut,RegRD,WBreg,Memreg,ALUreg,RegRDreg);
 	input clock;
 	input [1:0] WB;
@@ -260,7 +260,7 @@ module MEMWB(clock,WB,Memout,ALUOut,RegRD,WBreg,Memreg,ALUreg,RegRDreg);
 
 endmodule
 
-// Instruction Memory Module
+/// Instruction Memory Module
 module InstructMem(PC,Inst);
 	input [31:0] PC;
 	output [31:0] Inst;
@@ -271,7 +271,7 @@ module InstructMem(PC,Inst);
 
 endmodule
 
-// Register File Module
+/// Register File Module
 module Registers(clock,WE,InData,WrReg,ReadA,ReadB,OutA,OutB);
 	input [4:0] WrReg, ReadA, ReadB;
 	input WE,clock;
@@ -306,7 +306,7 @@ module Registers(clock,WE,InData,WrReg,ReadA,ReadB,OutA,OutB);
 	end
 endmodule
 
-// ALU Module:
+/// ALU Module:
 module ALU(ALUCon,DataA,DataB,Result);
 	input [3:0] ALUCon;
 	input [31:0] DataA,DataB;
@@ -391,7 +391,7 @@ module ALU(ALUCon,DataA,DataB,Result);
 	end
 endmodule
 
-// Data Memory Module:
+/// Data Memory Module:
 module DATAMEM(MemWrite,MemRead,Addr,Wdata,Rdata);
 	input [31:0] Addr,Wdata;
 	input MemWrite,MemRead;
@@ -409,7 +409,7 @@ module DATAMEM(MemWrite,MemRead,Addr,Wdata,Rdata);
 		Rdata <= regfile[Addr];//memory read
 endmodule
 
-// ALU Control Module
+/// ALU Control Module
 module ALUControl(andi,ori,addi,ALUOp,funct,ALUCon);
 	input [1:0] ALUOp;
 	input [5:0] funct;
@@ -460,9 +460,7 @@ module ALUControl(andi,ori,addi,ALUOp,funct,ALUCon);
 	end
 endmodule
 
-
-
-// Control Module:
+/// Control Module:
 module Control(Op,Out,j,bne,imm,andi,ori,addi);
 	input [5:0] Op;
 	output[8:0] Out;
@@ -518,7 +516,7 @@ module Control(Op,Out,j,bne,imm,andi,ori,addi);
 
 endmodule
 
-// Forwarding Unit Module
+/// Forwarding Unit Module
 module ForwardUnit(MEMRegRd,WBRegRd,EXRegRs,EXRegRt, MEM_RegWrite, WB_RegWrite, ForwardA, ForwardB);
 	input[4:0] MEMRegRd,WBRegRd,EXRegRs,EXRegRt;
 	input MEM_RegWrite, WB_RegWrite;
@@ -545,7 +543,7 @@ module ForwardUnit(MEMRegRd,WBRegRd,EXRegRs,EXRegRt, MEM_RegWrite, WB_RegWrite, 
 	end
 endmodule
 
-// Hazard Detection Unit Module:
+/// Hazard Detection Unit Module:
 module HazardUnit(IDRegRs,IDRegRt,EXRegRt,EXMemRead,PCWrite,IFIDWrite,HazMuxCon);
 	input [4:0] IDRegRs,IDRegRt,EXRegRt;
 	input EXMemRead;
@@ -567,7 +565,7 @@ module HazardUnit(IDRegRs,IDRegRt,EXRegRt,EXMemRead,PCWrite,IFIDWrite,HazMuxCon)
 		end
 endmodule
 
-// Multiplexer Module
+/// Multiplexer Module
 module BIGMUX2(A,X0,X1,X2,X3,Out);//non-clocked mux
 	input [1:0] A;
 	input [31:0] X3,X2,X1,X0;
